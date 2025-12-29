@@ -4,7 +4,7 @@ virt-install --name rhel-dvd --os-variant rhel9.5 \
 --location ~/Downloads/rhel-9.6-x86_64-dvd.iso \
 --initrd-inject ./dvd.ks \
 --memorybacking source.type=memfd,access.mode=shared \
---filesystem ~/flozano-github/kickstart/dvd-iso,host-var-srv,driver.type=virtiofs \
+--filesystem $PWD/html,host-files,driver.type=virtiofs \
 --graphics none \
 --extra-arg console=ttyS0 \
 --extra-args inst.ks=file:/dvd.ks 

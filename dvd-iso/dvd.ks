@@ -1,8 +1,3 @@
-%pre --erroronfail
-mkdir -p /mnt/host-var-srv
-mount -t virtiofs -o ro host-var-srv /mnt/host-var-srv
-%end
-
 lang en_US.UTF-8
 keyboard us
 timezone Etc/UTC --utc
@@ -39,5 +34,8 @@ chmod 644 /etc/hostname
 
 systemctl enable httpd.socket
 firewall-offline-cmd --zone=public --add-service=http
-echo "RHEL VM installed offline" > /var/www/html/index.html
+
+mkdir -p /mnt/host-files
+mount -t virtiofs -o ro host-files /mnt/host-files
+cp /mnt/host-files/index.html /var/www/html
 %end
