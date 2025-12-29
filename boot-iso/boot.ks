@@ -11,7 +11,7 @@ network --bootproto=dhcp
 
 rootpw --lock
 
-cdrom
+rhsm --organization REPLACE_WITH_ORG_ID --activation-key REPLACE_WITH_ACTIVATION_KEY
 text
 reboot
 
@@ -29,12 +29,11 @@ cat > /home/core/.ssh/authorized_keys << EOFSSH
 REPLACE_WITH_SSH_PUB_KEY
 EOFSSH
 
-echo "rhel-dvd" > /etc/hostname
+echo "rhel-boot" > /etc/hostname
 chmod 644 /etc/hostname
 
 systemctl enable httpd.socket
 firewall-offline-cmd --zone=public --add-service=http
-
 mkdir -p /mnt/host-files
 mount -t virtiofs -o ro host-files /mnt/host-files
 cp /mnt/host-files/index.html /var/www/html

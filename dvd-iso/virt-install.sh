@@ -1,3 +1,5 @@
+#!/bin/bash
+
 virt-install --name rhel-dvd --os-variant rhel9.5 \
 --vcpus 2 --ram 4096 --disk size=20 \
 --network passt,portForward0=8022:22,portForward1=8080:80 \
